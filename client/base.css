@@ -1,0 +1,46 @@
+.chatbody {
+    height: 400px;
+    width: 100%;
+    background-color: aliceblue;
+    max-height: 400px;
+    overflow-y: scroll;
+    padding: 20px;
+}
+
+.sendbtn {
+    width: 20%;
+    float: right;
+    border-radius: 0;
+    font-size: 12px;
+    height: 100%;
+}
+
+.chat {
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    width: 400px;
+}
+
+.msg {
+    padding: 16px;
+    color: white;
+    margin: 4px;
+    border-radius: 15px;
+}
+
+.textinput {
+    width: 80%;
+    border-style: none;
+    border-radius: 0px;
+    display: inline-block;
+}
+
+.usermsg {
+    background-color: orange;
+    text-align: right;
+}
+
+.botmsg {
+    background-color: indigo;
+}
