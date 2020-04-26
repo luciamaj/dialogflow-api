@@ -51,7 +51,7 @@ function sendQuery(sessionId, query, contexta) {
             },
         },
         queryParams: {
-            contexts: [context] // You can pass multiple contexts if you wish
+            contexts: [context] 
         }
     };
 
