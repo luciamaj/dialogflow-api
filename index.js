@@ -1,5 +1,6 @@
 const dialogflow = require('dialogflow');
 const { struct } = require('pb-util');  
+const bodyParser = require('body-parser');
 
 const projectId = 'provaapi-jrgakd';
 const contextsClient = new dialogflow.ContextsClient({keyFilename: "new.json"});
@@ -13,12 +14,27 @@ let context;
 const express = require('express');
 // creo l'app di express
 const app = express();
+
 // così gli dico quale cartella è la root della nostra applicazione
-app.use(express.static('client'))
+app.use(express.static('client'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
 // specifico la porta su cui farò girare il server
 const port = 3000
 // quanto il mio url è vuto punta in automatico a /client/index.html
 app.get('/', (req, res) => res.send('/'));
+
+app.post('/call', async function(req, res) {
+    console.log("THE RECIEVED REQ", req.body);
+    let msg = await sendMsg(req.body.testo);
+    console.log("the fucking msg", msg);
+    
+    
+    res.json({"botmsg": msg});
+    console.log("sono qui dopo la res");
+});
+
 // fallback per il 404
 app.use(function (req, res, next) {
     res.status(404).send("HUH SORRY! 404")
@@ -73,6 +89,8 @@ async function sendMsg(msg) {
     } else {
         console.log(`  No intent matched.`);
     }
+
+    return result.fulfillmentText;
 }
 
 (async() => {
